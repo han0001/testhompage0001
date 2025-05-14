@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 function Navigation() {
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleNavigation = (section) => {
     navigate("/");
@@ -12,11 +13,21 @@ function Navigation() {
         element.scrollIntoView({ behavior: "smooth" });
       }
     }, 100);
+    setIsMenuOpen(false);
   };
 
   return (
-    <nav>
-      <ul className="nav-links">
+    <nav className="navigation">
+      <button
+        className={`menu-button ${isMenuOpen ? "open" : ""}`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="메뉴"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <ul className={`nav-links ${isMenuOpen ? "open" : ""}`}>
         <li>
           <a
             href="#features"
@@ -62,7 +73,9 @@ function Navigation() {
           </a>
         </li>
         <li>
-          <Link to="/limit-calculator">한도계산</Link>
+          <Link to="/limit-calculator" onClick={() => setIsMenuOpen(false)}>
+            한도계산
+          </Link>
         </li>
       </ul>
     </nav>

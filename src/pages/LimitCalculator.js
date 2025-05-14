@@ -107,6 +107,13 @@ function LimitCalculator() {
   const [result, setResult] = useState(null);
   const [loadingText, setLoadingText] = useState(0);
 
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, []);
+
   const loadingMessages = [
     "AI가 최적의 한도를 계산중입니다..",
     "시장 가격을 분석중입니다..",
