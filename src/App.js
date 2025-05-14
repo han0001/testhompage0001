@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import LimitCalculator from "./pages/LimitCalculator";
 import Footer from "./components/Footer";
@@ -12,7 +12,9 @@ function App() {
         <header>
           <div className="container">
             <div className="header-content">
-              <div className="logo">애플전당포</div>
+              <Link to="/" className="logo">
+                애플전당포
+              </Link>
               <Navigation />
             </div>
           </div>

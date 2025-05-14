@@ -1,6 +1,106 @@
 import React, { useState, useEffect } from "react";
 import "./LimitCalculator.css";
 
+function ChartAnimation() {
+  const [currentData, setCurrentData] = useState(0);
+
+  const chartData = [
+    {
+      title: "iPhone 14 Pro Max 시세",
+      stats: {
+        volume: "+12.5%",
+        price: "1,450,000원",
+        trend: "상승",
+      },
+      points: [35, 42, 38, 45, 50, 48, 55, 52],
+    },
+    {
+      title: "MacBook Pro M2 시세",
+      stats: {
+        volume: "+8.3%",
+        price: "2,150,000원",
+        trend: "안정",
+      },
+      points: [40, 38, 42, 41, 39, 43, 40, 42],
+    },
+    {
+      title: "iPad Pro 시세",
+      stats: {
+        volume: "+15.2%",
+        price: "950,000원",
+        trend: "급등",
+      },
+      points: [30, 35, 40, 45, 50, 55, 60, 65],
+    },
+    {
+      title: "Apple Watch 시세",
+      stats: {
+        volume: "+5.7%",
+        price: "350,000원",
+        trend: "하락",
+      },
+      points: [50, 45, 40, 35, 30, 25, 20, 15],
+    },
+  ];
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentData((prev) => (prev + 1) % chartData.length);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="chart-container">
+      <div className="chart-title">{chartData[currentData].title}</div>
+      <div className="chart">
+        <div className="chart-line"></div>
+        <div className="chart-points">
+          {chartData[currentData].points.map((height, i) => (
+            <div
+              key={i}
+              className="chart-point"
+              style={{
+                animationDelay: `${i * 0.15}s`,
+                height: `${height}px`,
+              }}
+            ></div>
+          ))}
+        </div>
+        <div className="chart-labels">
+          <span>1월</span>
+          <span>2월</span>
+          <span>3월</span>
+          <span>4월</span>
+          <span>5월</span>
+          <span>6월</span>
+        </div>
+      </div>
+      <div className="chart-stats">
+        <div className="stat-item">
+          <span className="stat-label">최근 거래량</span>
+          <span className="stat-value">
+            {chartData[currentData].stats.volume}
+          </span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">평균 가격</span>
+          <span className="stat-value">
+            {chartData[currentData].stats.price}
+          </span>
+        </div>
+        <div className="stat-item">
+          <span className="stat-label">시장 동향</span>
+          <span className="stat-value">
+            {chartData[currentData].stats.trend}
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function LimitCalculator() {
   const [productName, setProductName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -95,6 +195,8 @@ function LimitCalculator() {
             </div>
           </div>
         )}
+
+        <ChartAnimation />
       </div>
     </div>
   );
