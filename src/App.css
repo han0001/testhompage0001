@@ -426,7 +426,10 @@ header {
   border: none;
   cursor: pointer;
   padding: 10px;
-  z-index: 1000;
+  z-index: 1001;
+  position: fixed;
+  top: 12px;
+  right: 20px;
 }
 
 .menu-button span {
@@ -477,16 +480,17 @@ header {
 
   .nav-links {
     position: fixed;
-    top: 64px;
+    top: 0;
     right: -100%;
     width: 100%;
-    height: calc(100vh - 64px);
+    height: 100vh;
     background-color: white;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 80px 20px 20px;
     transition: right 0.3s ease;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
   }
 
   .nav-links.open {
