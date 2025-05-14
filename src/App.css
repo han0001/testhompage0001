@@ -69,6 +69,19 @@ header {
   color: var(--primary-blue);
 }
 
+.nav-links li:last-child a {
+  background-color: var(--primary-blue);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.nav-links li:last-child a:hover {
+  background-color: var(--secondary-blue);
+  transform: translateY(-2px);
+}
+
 .hero {
   padding-top: 140px;
   padding-bottom: 80px;
